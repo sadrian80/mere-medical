@@ -1,10 +1,8 @@
-version: '3.9'
-
 services:
   app:
     image: cfu288/mere-medical:latest
     ports:
-      - '4200:80'
+      - '80'
     healthcheck:
       test: ['CMD', 'node', '/app/healthcheck.js']
       interval: 5s # Interval between health checks.
@@ -22,23 +20,4 @@ services:
   docs:
     image: cfu288/mere-medical-docs:latest
     ports:
-      - '4202:80'
-  demo:
-    image: cfu288/mere-medical:latest
-    ports:
-      - '3366:80'
-    healthcheck:
-      test: ['CMD', 'node', '/app/healthcheck.js']
-      interval: 5s # Interval between health checks.
-      timeout: 5s # Timeout for each health checking.
-      retries: 12 # How many times retries.
-      start_period: 5s # Estimated time to boot.
-    environment:
-      - ONPATIENT_CLIENT_ID=${ONPATIENT_CLIENT_ID}
-      - ONPATIENT_CLIENT_SECRET=${ONPATIENT_CLIENT_SECRET}
-      - EPIC_CLIENT_ID=${EPIC_CLIENT_ID}
-      - EPIC_SANDBOX_CLIENT_ID=${EPIC_SANDBOX_CLIENT_ID}
-      - CERNER_CLIENT_ID=${CERNER_CLIENT_ID}
-      - VERADIGM_CLIENT_ID=${VERADIGM_CLIENT_ID}
-      - PUBLIC_URL=${PUBLIC_URL}
-      - IS_DEMO=enabled
+      - '80'
